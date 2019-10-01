@@ -1,0 +1,122 @@
+<html>
+<head>
+<link rel="icon" type="image/ico" href="elasticicon.png" />
+<title>Elastic search data operations</title>
+<link href='https://fonts.googleapis.com/css?family=Balthazar' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Sanchez' rel='stylesheet'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<style>
+header{
+	text-align:center;
+	padding:20px;
+	font-size:25px;
+	color:lime;
+}
+body{
+	font-family:Balthazar;
+	font-size:20px;
+}
+input[type="text"]{
+	height:5.6%;
+	font-family:Balthazar;
+	font-size:16px;
+	color:green;
+}
+.first{
+padding:10px;
+width:50%;
+}
+.second{
+border:2px solid black;
+width:100%;
+overflow:scroll;
+float:left;
+}
+li{
+float:left;
+}
+h5{
+color:Red;
+font-style:bold;
+}
+fieldset{
+width:100%;
+}
+p{
+	margin-left:20px;
+	padding:10px;
+	color:green;
+}
+</style>
+<body>
+	<header>
+		Sql Query To Insert,Update,Delete,Retrieve Data In Elastic Search
+	</header>
+	<div class="first" method="GET">
+	<form>
+		<div class="form-group">
+			<label>Enter Your Query Here !</label>
+			<input type="text" class="form-control" id="query" placeholder="select * from Student where username='velliyangiri'" name="query">
+		</div>
+		<div class="form-group">
+			<button type="button" class="btn btn-primary" onclick="load()">GET</button>
+		</div>
+	</form>
+	</div>
+	<h3>-------------------------------------------------------------------------------------------Output---------------------------------------------------------------------------------------------------</h3>
+	<div class="second" id="disp">
+		<center><h3 style="color:green">Demo Sql queries</h3><center>
+		<hr>
+		<h5>SELECT</h5>
+		<ul>
+			<li>select * from tablename</li></br>
+			<li>select * from tablename where condition</li></br>
+			<li>select columnname1,columnname2 from tablename</li></br>
+		</ul>
+		<hr>
+		<h5>UPDATE</h5>
+		<ul>
+			<li>update tablename set columname=value where condition</li></br>
+		</ul>
+		<hr>
+		<h5>DELETE</h5>
+		<ul>
+			<li>drop table tablename</li></br>
+			<li>delete from tablename</li></br>
+			<li>delete from tablename where condition</li></br>
+		</ul>
+		<hr>
+		<h5>INSERT</h5>
+		<ul>
+			<li>insert into tablename values (value1,value2,...)</li></br>
+			<li>insert into tablename (column1,column2,...) values (value1,value2,...)</li></br>
+			<li>insert into tablename (column1,column2,...) values (value1,value2,...),(value1,value2,...),...</li></br>
+		</ul>
+		<hr>
+		<h5>CREATE</h5>
+		<ul>
+			<li>create table tablename</li></br>
+			<li>create table tablename (column1 datatype,column2 datatype,..)</li></br>
+		</ul>
+		<hr>
+	</div>
+</body>
+<script>
+function load() 
+{
+  var query=document.getElementById("query").value;
+ var id="welcome";
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200){	
+     document.getElementById("disp").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "send?id="+query, true);
+  xhttp.send();
+}
+</script>
+</html>
